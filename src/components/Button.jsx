@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Button = ({ 
+const Button = ({
   onClick,
   variant,
   size = 'small',
@@ -8,11 +8,11 @@ const Button = ({
 }) => {
   const variants = {
     add: {
-      padding: '10px 20px',
+      padding: '8px 24px',
       backgroundColor: '#8b5cf6',
       color: 'white',
       border: 'none',
-      borderRadius: '5px',
+      borderRadius: '6px',
       cursor: 'pointer',
       transition: 'background-color 0.2s ease'
     },
@@ -27,7 +27,7 @@ const Button = ({
     },
     edit: {
       padding: '6px 10px',
-      backgroundColor: '#8b5cf6', 
+      backgroundColor: '#8b5cf6',
       color: 'white',
       border: 'none',
       borderRadius: '5px',
@@ -35,6 +35,7 @@ const Button = ({
       fontSize: '14px'
     }
   };
+
   const sizes = {
     small: {
       padding: '4px 8px',
@@ -43,14 +44,17 @@ const Button = ({
     large: {
       padding: '12px 24px',
       fontSize: '18px'
-    } 
+    }
   };
+
   const hoverEffects = {
     add: { backgroundColor: '#7c3aed' },
     delete: { backgroundColor: '#210124' },
     edit: { backgroundColor: '#7c3aed' },
   }
+
   const [isHovered, setIsHovered] = useState(false);
+
   return (
     <>
       <button className={`btn-${variant}`}
