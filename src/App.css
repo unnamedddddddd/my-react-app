@@ -38,7 +38,7 @@ form {
 }
 .input-task{
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
 }
 .text-task:focus {
   outline: none;
@@ -50,6 +50,7 @@ form {
   border: 1px solid #cbd5e0;
   border-radius: 6px;
   font-size: 13px;
+  width: 50%;
 }
 #labelTasks {
   display: flex;

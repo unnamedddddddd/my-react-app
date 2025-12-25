@@ -4,7 +4,8 @@ import Button from "./Button";
 const Task = ({ 
   id,
   text,
-  onEdit = '',
+  time,
+  onEdit,
   onDelete 
 }) => {
   const [done, setIsDone] = useState(false);
@@ -31,9 +32,10 @@ const Task = ({
       </div>
       <div className="task-content"> 
         <div className="task-text">{text}</div> 
+        <div className="task-time">{time}</div> 
       </div>
       <div className="task-actions"> 
-        <Button variant='edit' onClick={() => alert('Edit')}>✏️</Button>
+        <Button variant='edit' onClick={() => onEdit()}>✏️</Button>
         <Button variant='delete' onClick={() => onDelete(id)}>🗑️</Button>
       </div>
     </li>

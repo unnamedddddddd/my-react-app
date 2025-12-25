@@ -19,17 +19,29 @@ function App() {
         return false;
       }
     }
-    const newTask = {id: Date.now(), text: document.getElementById('inputTask').value.trim()};
+    const time = new Date();  
+    const newTask = {id: Date.now(), text: document.getElementById('inputTask').value.trim(), time: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}, ${time.getDay()}/${time.getMonth()}/${time.getFullYear()}`};
     setTasks([...tasks, newTask]);
-    console.log(newTask)
+    console.table(tasks)
     document.getElementById('inputTask').value = '';
   }
-  const deleteTask = (taskId) => {
+  const deleteTask = taskId => {
     setTasks(tasks.filter(task => task.id !== taskId))
   }
-
-  useEffect(() => {
-    localStorage.setItem('todoTasks', JSON.stringify(tasks));
+  const editTask = taskId => {
+    setTasks(tasks.map(task => {
+      if (task.id === taskId) {
+        const newText = prompt('Введите новую задачу', task.text);
+        if (newText === null) {
+          return task;
+        }
+        return {...task, text: newText };
+      }
+      return task
+    }));
+  }  
+  useEffect(() => { 
+    localStorage.setItem('todoTsks', JSON.stringify(tasks));
   }, [tasks]);
   return (
     <>
@@ -43,7 +55,7 @@ function App() {
         </form>
         <form id='formTacks'>
           <label id='labelTasks'>Ваши задачи</label>
-          <ul id='tasksList'>{tasks.map(task => <Task text={task.text} id={task.id} onDelete={() => deleteTask(task.id)}></Task>)}</ul>
+          <ul id='tasksList'>{tasks.map(task => <Task text={task.text} time={task.time} id={task.id} onEdit={() => editTask(task.id)} onDelete={() => deleteTask(task.id)}></Task>)}</ul>
         </form>
      </div>
     </>

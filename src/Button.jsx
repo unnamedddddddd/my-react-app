@@ -34,7 +34,7 @@ const Button = ({
       cursor: 'pointer',
       fontSize: '14px'
     }
-};
+  };
   const sizes = {
     small: {
       padding: '4px 8px',
@@ -44,7 +44,7 @@ const Button = ({
       padding: '12px 24px',
       fontSize: '18px'
     } 
-};
+  };
   const hoverEffects = {
     add: { backgroundColor: '#7c3aed' },
     delete: { backgroundColor: '#210124' },
