@@ -49,7 +49,7 @@ function App() {
   }
 
   useEffect(() => {
-    localStorage.setItem('todoTsks', JSON.stringify(tasks));
+    localStorage.setItem('todoTasks', JSON.stringify(tasks));
   }, [tasks]);
 
   return (
