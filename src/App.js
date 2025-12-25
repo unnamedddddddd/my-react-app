@@ -20,7 +20,10 @@ function App() {
       }
     }
     const time = new Date();  
-    const newTask = {id: Date.now(), text: document.getElementById('inputTask').value.trim(), time: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}, ${time.getDay()}/${time.getMonth()}/${time.getFullYear()}`};
+    const newTask = {
+      id: Date.now(), 
+      text: document.getElementById('inputTask').value.trim(), 
+      time: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}, ${time.getDay()}/${time.getMonth()}/${time.getFullYear()}`};
     setTasks([...tasks, newTask]);
     console.table(tasks)
     document.getElementById('inputTask').value = '';
@@ -55,7 +58,15 @@ function App() {
         </form>
         <form id='formTacks'>
           <label id='labelTasks'>Ваши задачи</label>
-          <ul id='tasksList'>{tasks.map(task => <Task text={task.text} time={task.time} id={task.id} onEdit={() => editTask(task.id)} onDelete={() => deleteTask(task.id)}></Task>)}</ul>
+          <ul id='tasksList'>{tasks.map(task => 
+            <Task 
+              text={task.text} 
+              time={task.time}
+              id={task.id} 
+              onEdit={() => editTask(task.id)} 
+              onDelete={() => deleteTask(task.id)}/>
+            )}
+          </ul>
         </form>
      </div>
     </>
