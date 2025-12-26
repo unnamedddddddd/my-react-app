@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Button from './components/Button';
 import Task from './components/Task';
+import Option from './components/Options';
 
 function App() {
   const [tasks, setTasks] = useState(() => {
@@ -47,7 +48,21 @@ function App() {
       return task
     }));
   }
-
+  const sortAZ = () => {
+    setTasks([...tasks].sort((a, b) => 
+      a.text.localeCompare(b.text, 'ru')
+    ));
+  }
+  const sortZA = () => {
+    setTasks([...tasks].sort((a, b) => 
+      b.text.localeCompare(a.text, 'ru')
+    ))
+  }
+  const sortTime = () => {
+    setTasks([...tasks].sort((a, b) => 
+      a.time.localeCompare(b.time, 'ru')
+    ))
+  }
   useEffect(() => {
     localStorage.setItem('todoTasks', JSON.stringify(tasks));
   }, [tasks]);
@@ -62,14 +77,8 @@ function App() {
             <Button variant='add' onClick={addTask}>Добавить задачу</Button>
           </div>
         </form>
-        <div style={{
-          backgroundColor: '#fff',
-          borderRadius: 12,
-          padding: 32,
-          boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-          borderWidth: 1,
-          borderColor: "#e2e8f0"
-        }} id='formTacks'>
+        <div id='formTacks'>
+          <Option onSortAZ={sortAZ} onSortZA={sortZA} onSortTime={sortTime}/>
           <text id='labelTasks'>Ваши задачи</text>
           <ul id='tasksList'>{tasks.map(task =>
             <Task
